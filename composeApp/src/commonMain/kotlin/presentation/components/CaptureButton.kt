@@ -2,6 +2,7 @@ package presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -24,8 +25,8 @@ fun CaptureButton(
         colors = ButtonDefaults.buttonColors(backgroundColor = OffWhite),
         shape = Shapes.large,
         modifier = Modifier
+            .widthIn(max = 300.dp)
             .fillMaxWidth()
-            .padding(16.dp)
     ) {
         Text(
             text = "Catch this Pokemon!"
