@@ -8,7 +8,7 @@ import io.ktor.client.HttpClient
 import org.koin.compose.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import presentation.CardsListViewModel
+import presentation.screens.cardlist.CardsListViewModel
 
 val sharedModule = module {
 

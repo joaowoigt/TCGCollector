@@ -1,12 +1,13 @@
-package presentation
+package presentation.screens.cardlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import domain.repositories.ICardsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import presentation.states.CardsListState
+import presentation.screens.cardlist.states.CardsListState
 
 class CardsListViewModel(
     private val cardsRepository: ICardsRepository
@@ -17,8 +18,13 @@ class CardsListViewModel(
 
     init {
         viewModelScope.launch {
+            _state.update {
+                it.copy(isLoading = true)
+            }
             val result = cardsRepository.getCardList()
-            _state.value = CardsListState(cardsList = result.cards)
+            _state.update {
+                it.copy(isLoading = false, cardsList = result.cards)
+            }
         }
     }
 }
