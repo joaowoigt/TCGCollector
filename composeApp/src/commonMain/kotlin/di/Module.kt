@@ -19,7 +19,12 @@ val sharedModule = module {
     single<ICardsRepository> { CardsRepository(api = get()) }
 
     // ViewModels
-    viewModel { CardsListViewModel(cardsRepository = get()) }
+    viewModel {
+        CardsListViewModel(
+            cardsRepository = get(),
+            cardDao = get()
+        )
+    }
 }
 
 expect val platformModule: Module

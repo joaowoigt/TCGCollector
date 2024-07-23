@@ -36,8 +36,10 @@ fun CardListScreen(
                     cardList = cardList,
                     onCardClick = { card ->
                         println("Abrindo a pokedex para ${card.name}")
+                        viewModel.getSavedCard()
                     },
                     onButtonClick = { card ->
+                        viewModel.addCard(card)
                         println("Você capturou ${card.name}")
                     }
                 )
