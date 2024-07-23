@@ -1,21 +1,26 @@
 package presentation.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import presentation.theme.Blue
 import presentation.theme.OffWhite
 import presentation.theme.Shapes
 
 @Composable
 fun CaptureButton(
-    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    text: @Composable () -> Unit,
+    content: @Composable RowScope.() -> Unit = {},
+    onClick: () -> Unit
 ) {
 
     Button(
@@ -24,13 +29,17 @@ fun CaptureButton(
         },
         colors = ButtonDefaults.buttonColors(backgroundColor = OffWhite),
         shape = Shapes.large,
-        modifier = Modifier
+        modifier = modifier
             .widthIn(max = 300.dp)
             .fillMaxWidth()
     ) {
-        Text(
-            text = "Catch this Pokemon!"
-        )
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            text()
+            content()
+        }
     }
-
 }
